@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "329972741649",
+    "firebase_url": "https://hello-11b70.firebaseio.com",
+    "project_id": "hello-11b70",
+    "storage_bucket": "hello-11b70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329972741649:android:4995a6036b7ff60ec8e3b0",
+        "android_client_info": {
+          "package_name": "com.srikanth7785.othello"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329972741649-emdkulqigc67nvk6n4vapb5q9oalk28e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxDQ6j2RF_DAWhrOreIYmy2Z4W9_uaPig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329972741649-emdkulqigc67nvk6n4vapb5q9oalk28e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

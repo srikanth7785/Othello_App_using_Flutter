@@ -14,15 +14,24 @@ class IntroPage extends StatefulWidget {
 }
 
 class IntroPageState extends State<IntroPage> {
+  
+static List<String> testDeviceIds = <String>["4768989DE9003C8EF583D7B60EC12B4B"];
+// static List<String> testDeviceIds = <String>["33BE2250B43518CCDA7DE426D04EE231"];
 
 static MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+// RequestConfiguration configuration =
+//     new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+// MobileAds.setRequestConfiguration(configuration);
+
   keywords: <String>['games', 'pubg','food','taxi','ride','hotel','play','oyo','rapido','swiggy','uber','Goibibo','True Balance','Phone Pay','Lynk','IOT','AI','Machine Learning'],
-  contentUrl: 'https://flutter.io',
-  testDevices: <String>["90F3FC819896095375532EAC4070D216"], // Android emulators are considered test devices
+  // contentUrl: 'https://flutter.io',
+  // testDevices: <String>["90F3FC819896095375532EAC4070D216"], // Android emulators are considered test devices
+//  testDevices: testDeviceIds, // Android emulators are considered test devices
+  testDevices: testDeviceIds != null ? testDeviceIds : null,
 );
 
 BannerAd bannerAd = BannerAd(
-  adUnitId: "ca-app-pub-8497531290930465/4971570592",
+  adUnitId: "ca-app-pub-3781046810533099/1446430882",
   size: AdSize.banner,
   targetingInfo: targetingInfo,
   listener: (MobileAdEvent event){
@@ -36,7 +45,7 @@ BannerAd bannerAd = BannerAd(
 initState()
 {
   super.initState();
-  FirebaseAdMob.instance.initialize(appId: "ca-app-pub-8497531290930465~1582989926");
+  FirebaseAdMob.instance.initialize(appId: "ca-app-pub-3781046810533099~6890329253");
   bannerAd..load()..show(
     anchorType: AnchorType.bottom,
     anchorOffset: 5.0,

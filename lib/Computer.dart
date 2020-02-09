@@ -588,7 +588,7 @@ List<Color> colors = [
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.09,
                   child: new Center(
-                    child: empty == 0 || countingColors("White") == 0 || countingColors("Black") == 0
+                    child: empty == 0 || countingColors("White") == 0 || countingColors("Black") == 0 || complete == 1
                         ? (countingColors("White") == countingColors("Black")
                             ? new Image.asset(
                                 'images/Draw.gif',
