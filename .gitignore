@@ -1,7 +1,7 @@
 key.properties
 key.jks
-# android/app/google-services.json
-E:\SRIKANTH\programs\upcoming\fourth\android\app\google-services.json
+**/android/app/google-services.json
+# E:\SRIKANTH\programs\upcoming\fourth\android\app\google-services.json
 
 # Miscellaneous
 *.class
