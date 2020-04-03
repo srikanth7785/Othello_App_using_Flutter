@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fourth/AboutUs.dart';
+import 'package:fourth/EasyBot.dart';
 import './GamePage.dart';
 import './Computer.dart';
 import './LearnToPlay.dart';
@@ -159,7 +160,51 @@ dispose()
                             ),
                           ]
                         ),
-                        onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => Computer())),
+                        onTap: (){
+                          showDialog(
+                            context: context,
+                            // barrierDismissible: false,
+                            builder: (context) {
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                backgroundColor: Colors.orangeAccent,
+                                title: Center(child: Text("Choose Difficulty",style: TextStyle(color: Colors.brown,fontSize: 35.0,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),)),
+                                content: Container(
+                                  height: MediaQuery.of(context).size.height * 0.22,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      SizedBox(height: 10.0),
+                                      ListTile(
+                                        title: Center(child: Text("Easy Level",style: TextStyle(color: Colors.black,fontSize: 28.0,fontStyle: FontStyle.italic))),
+                                        onTap: (){
+                                          Navigator.pop(context);
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => EasyBot()));
+                                        }
+                                      ),
+                                      SizedBox(height: 20.0,),
+                                      ListTile(
+                                        title: Center(child: Text("Hard Level",style: TextStyle(color: Colors.black,fontSize: 28.0,fontStyle: FontStyle.italic))),
+                                        onTap: (){
+                                          Navigator.pop(context);
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => Computer()));
+                                        }
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: Text("BACK",style: TextStyle(color: Colors.brown,fontWeight: FontWeight.bold)),
+                                    onPressed: ()=>Navigator.pop(context),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
                       ),
                     ],
                   ),
