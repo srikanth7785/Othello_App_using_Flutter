@@ -49,17 +49,15 @@ class Testappstate extends State<Testapp> {
       if (enter == 0) {
         showLongToast("Invalid Entry");
         invalidEntries = invalidEntries == 3 ? 3 : (invalidEntries + 1) % 4;
-      }
-
-      else
-      {
+      } else {
         invalidEntries = 0;
         currentPlayer = currentPlayer == "black" ? "white" : "black";
         empty--;
       }
 
-      if(empty == 0 || countingColors("White") == 0 || countingColors("Black") == 0)
-      {
+      if (empty == 0 ||
+          countingColors("White") == 0 ||
+          countingColors("Black") == 0) {
         setState(() {
           complete = 1;
         });
@@ -68,14 +66,10 @@ class Testappstate extends State<Testapp> {
     });
   }
 
-
-  void truncate(){
-
+  void truncate() {
     setState(() {
-      for(int i = 0; i < 8; i++)
-      for(int j = 0; j < 8; j++)
-      a[i][j] = '-';
-      
+      for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) a[i][j] = '-';
+
       firstSkip = 0;
       currentSkip = 1;
       complete = 0;
@@ -84,10 +78,9 @@ class Testappstate extends State<Testapp> {
       a[3][3] = 'W';
       a[3][4] = 'B';
       a[4][3] = 'B';
-      a[4][4] = 'W';   
+      a[4][4] = 'W';
     });
   }
-
 
   int east(int x, int y, String ch) //right
   {
@@ -317,12 +310,12 @@ class Testappstate extends State<Testapp> {
 
   void showLongToast(String message) {
     invalidColorsindex = invalidColorsindex + 1;
-    Fluttertoast.showToast( 
+    Fluttertoast.showToast(
       gravity: ToastGravity.TOP,
       textColor: Colors.redAccent,
       backgroundColor: colors[invalidColorsindex % 3],
       msg: message,
-      timeInSecForIos: 1,
+      // timeInSecForIos: 1,
       toastLength: Toast.LENGTH_SHORT,
     );
   }
@@ -334,7 +327,7 @@ class Testappstate extends State<Testapp> {
       appBar: new AppBar(
         leading: IconButton(
           icon: Icon(Icons.keyboard_arrow_left),
-          onPressed: ()=>Navigator.pop(context),
+          onPressed: () => Navigator.pop(context),
           iconSize: MediaQuery.of(context).size.width * 0.12,
         ),
         elevation: 0.0,
@@ -365,31 +358,38 @@ class Testappstate extends State<Testapp> {
       ),
       body: new ListView(
         children: <Widget>[
-          invalidEntries == 3 ? Align(
-            alignment: Alignment.centerRight,
-                    child: Card(
-                      color: Colors.transparent,
-                      elevation: 15.0,
-                        child: GestureDetector(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.0),
-                            color: Colors.blue,
-                          ),
-                          padding: EdgeInsets.all(2),
-                          child: Text("   Skip\nmy Turn"),
+          invalidEntries == 3
+              ? Align(
+                  alignment: Alignment.centerRight,
+                  child: Card(
+                    color: Colors.transparent,
+                    elevation: 15.0,
+                    child: GestureDetector(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Colors.blue,
                         ),
-                        onTap: (){
-                          setState(() {
-                            firstSkip == 0 ? firstSkip = empty : currentSkip = empty;
-                            complete =  currentSkip == firstSkip ? 1 : complete;
-                            invalidEntries = 0;
-                            currentPlayer = currentPlayer == "black" ? "white" : "black"; 
-                          });
-                        },
+                        padding: EdgeInsets.all(2),
+                        child: Text("   Skip\nmy Turn"),
                       ),
+                      onTap: () {
+                        setState(() {
+                          firstSkip == 0
+                              ? firstSkip = empty
+                              : currentSkip = empty;
+                          complete = currentSkip == firstSkip ? 1 : complete;
+                          invalidEntries = 0;
+                          currentPlayer =
+                              currentPlayer == "black" ? "white" : "black";
+                        });
+                      },
                     ),
-                  ) : Container(height: MediaQuery.of(context).size.height * 0.058,),
+                  ),
+                )
+              : Container(
+                  height: MediaQuery.of(context).size.height * 0.058,
+                ),
           Stack(
             children: <Widget>[
               new Column(
@@ -397,7 +397,8 @@ class Testappstate extends State<Testapp> {
                   new Container(
                     padding: new EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 0.0),
                     child: new GridView.extent(
-                      maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.12,
+                      maxCrossAxisExtent:
+                          MediaQuery.of(context).size.width * 0.12,
                       mainAxisSpacing: 2.0,
                       crossAxisSpacing: 2.0,
                       children: customBox(),
@@ -413,7 +414,9 @@ class Testappstate extends State<Testapp> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       new Text(
-                         countingColors("White") < 10 ? "White: 0${countingColors("White")}" : "White: ${countingColors("White")}",
+                        countingColors("White") < 10
+                            ? "White: 0${countingColors("White")}"
+                            : "White: ${countingColors("White")}",
                         style: new TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -424,22 +427,31 @@ class Testappstate extends State<Testapp> {
                         alignment: Alignment.center,
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(40.0),
-                          color: currentPlayer == "black" ? Colors.black : Colors.white,
+                          color: currentPlayer == "black"
+                              ? Colors.black
+                              : Colors.white,
                         ),
                         width: MediaQuery.of(context).size.width * 0.1,
                         height: MediaQuery.of(context).size.width * 0.1,
                         child: new Center(
                           child: new Text(
-                            currentPlayer == "black" ? "Black\n Turn" : "White\n Turn",
+                            currentPlayer == "black"
+                                ? "Black\n Turn"
+                                : "White\n Turn",
                             style: new TextStyle(
-                              color: currentPlayer == "black" ? Colors.white : Colors.black,
-                              fontSize: MediaQuery.of(context).size.width * 0.025,
+                              color: currentPlayer == "black"
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.025,
                             ),
                           ),
                         ),
                       ),
                       new Text(
-                        countingColors("Black") < 10 ? "Black: 0${countingColors("Black")}" : "White: ${countingColors("Black")}",
+                        countingColors("Black") < 10
+                            ? "Black: 0${countingColors("Black")}"
+                            : "White: ${countingColors("Black")}",
                         style: new TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -450,11 +462,14 @@ class Testappstate extends State<Testapp> {
                   ),
                   Center(
                     child: new RaisedButton(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                      elevation: 10.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        elevation: 10.0,
                         color: Colors.orangeAccent,
                         child: new Text(
-                          empty == 0 || complete == 1 ? "Play Again" : "Reset Game",
+                          empty == 0 || complete == 1
+                              ? "Play Again"
+                              : "Reset Game",
                           style: new TextStyle(
                             fontSize: MediaQuery.of(context).size.width * 0.055,
                             color: Colors.redAccent,
@@ -468,37 +483,38 @@ class Testappstate extends State<Testapp> {
                   ),
                 ],
               ),
-                  Positioned(
-                    top: MediaQuery.of(context).size.height * 0.15,
-                    left: MediaQuery.of(context).size.width * 0.01,
-                      child: new Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.09,
-                      child: new Center(
-                        child: empty == 0 || complete == 1
-                            ? (countingColors("White") == countingColors("Black")
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.15,
+                left: MediaQuery.of(context).size.width * 0.01,
+                child: new Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.09,
+                  child: new Center(
+                    child: empty == 0 || complete == 1
+                        ? (countingColors("White") == countingColors("Black")
+                            ? new Image.asset(
+                                'images/Draw.gif',
+                                width: MediaQuery.of(context).size.width,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                              )
+                            : (countingColors("White") > countingColors("Black")
                                 ? new Image.asset(
-                                    'images/Draw.gif',
+                                    'images/white.gif',
                                     width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height * 0.2,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
                                   )
-                                : (countingColors("White") > countingColors("Black")
-                                    ? new Image.asset(
-                                        'images/white.gif',
-                                        width: MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height * 0.2,
-                                      )
-                                    : new Image.asset(
-                                        'images/Black.gif',
-                                        width: MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height * 0.2,
-                                      )))
-                            : null,
-                      ),
-                    ),
+                                : new Image.asset(
+                                    'images/Black.gif',
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
+                                  )))
+                        : null,
                   ),
+                ),
+              ),
               //   ],
               // ),
             ],
@@ -535,7 +551,9 @@ class Testappstate extends State<Testapp> {
             child: new CircleAvatar(
               backgroundColor: a[row][col] == '-'
                   ? Colors.green
-                  : (a[row][col] == 'W') ? Colors.white : Colors.black,
+                  : (a[row][col] == 'W')
+                      ? Colors.white
+                      : Colors.black,
               maxRadius: MediaQuery.of(context).size.width * 0.047,
             ),
           ),
